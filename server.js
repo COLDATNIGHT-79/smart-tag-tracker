@@ -86,18 +86,7 @@ io.on('connection', (socket) => {
         }
     });
     
-   socket.on('add-tag', (tagData) => {
-    const newTag = {
-        id: Date.now().toString(),
-        name: tagData.name || 'New Tag',
-        lat: tagData.lat || (28.6139 + (Math.random() - 0.5) * 0.1), // Around Delhi
-        lng: tagData.lng || (77.2090 + (Math.random() - 0.5) * 0.1),
-        battery: Math.floor(Math.random() * 100),
-        lastSeen: new Date()
-    };
-    smartTags.push(newTag);
-    io.emit('tags-update', smartTags);
-});
+   
     
     socket.on('disconnect', () => {
         console.log('Client disconnected');
