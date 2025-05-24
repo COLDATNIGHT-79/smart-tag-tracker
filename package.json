@@ -1,0 +1,20 @@
+{
+  "name": "smart-tag-tracker",
+  "version": "1.0.0",
+  "description": "Mobile web app for tracking smart tags with real-time map",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "socket.io": "^4.8.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

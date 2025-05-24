@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PUNK TAG TRACKER</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <meta name="theme-color" content="#ff0080">
+    <link rel="manifest" href="manifest.json">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="header">
+            <h1><i class="fas fa-satellite-dish"></i> PUG_TRACK.SYS</h1>
+            <button class="add-tag-btn" id="addTagBtn">
+                <i class="fas fa-plus"></i>
+            </button>
+        </header>
+
+        <!-- Map Container -->
+        <div class="map-container">
+            <div id="map"></div>
+        </div>
+
+        <!-- Tags List -->
+        <div class="tags-container">
+            <div class="tags-header">
+                <h3><i class="fas fa-microchip"></i> Connected Devices</h3>
+                <span class="tag-count" id="tagCount">0</span>
+            </div>
+            <div class="tags-list" id="tagsList">
+                <!-- Tags will be populated here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Tag Modal -->
+    <div class="modal" id="addTagModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Initialize New Device</h3>
+                <span class="close" id="closeModal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <input type="text" id="tagNameInput" placeholder="DEVICE_NAME" maxlength="20">
+                <button class="btn-primary" id="confirmAddTag">Initialize</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Rename Tag Modal -->
+    <div class="modal" id="renameTagModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Rename Device</h3>
+                <span class="close" id="closeRenameModal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <input type="text" id="renameTagInput" placeholder="NEW_NAME" maxlength="20">
+                <button class="btn-primary" id="confirmRenameTag">Update</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
