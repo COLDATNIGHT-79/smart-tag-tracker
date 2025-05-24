@@ -31,33 +31,6 @@ let smartTags = [
     }
 ];
 
-// Also update the random coordinate generation in both add-tag handlers
-socket.on('add-tag', (tagData) => {
-    const newTag = {
-        id: Date.now().toString(),
-        name: tagData.name || 'New Tag',
-        lat: tagData.lat || (28.6139 + (Math.random() - 0.5) * 0.1), // Around Delhi
-        lng: tagData.lng || (77.2090 + (Math.random() - 0.5) * 0.1),
-        battery: Math.floor(Math.random() * 100),
-        lastSeen: new Date()
-    };
-    smartTags.push(newTag);
-    io.emit('tags-update', smartTags);
-});
-
-app.post('/api/tags', (req, res) => {
-    const newTag = {
-        id: Date.now().toString(),
-        name: req.body.name || 'New Tag',
-        lat: req.body.lat || (28.6139 + (Math.random() - 0.5) * 0.1), // Around Delhi
-        lng: req.body.lng || (77.2090 + (Math.random() - 0.5) * 0.1),
-        battery: Math.floor(Math.random() * 100),
-        lastSeen: new Date()
-    };
-    smartTags.push(newTag);
-    io.emit('tags-update', smartTags);
-    res.json(newTag);
-});
 // Socket.io connection handling
 io.on('connection', (socket) => {
     console.log('Client connected');
@@ -86,7 +59,18 @@ io.on('connection', (socket) => {
         }
     });
     
-   
+    socket.on('add-tag', (tagData) => {
+        const newTag = {
+            id: Date.now().toString(),
+            name: tagData.name || 'New Tag',
+            lat: tagData.lat || (28.6139 + (Math.random() - 0.5) * 0.1), // Around Delhi
+            lng: tagData.lng || (77.2090 + (Math.random() - 0.5) * 0.1),
+            battery: Math.floor(Math.random() * 100),
+            lastSeen: new Date()
+        };
+        smartTags.push(newTag);
+        io.emit('tags-update', smartTags);
+    });
     
     socket.on('disconnect', () => {
         console.log('Client disconnected');
